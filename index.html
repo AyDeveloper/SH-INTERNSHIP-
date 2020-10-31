@@ -1,0 +1,149 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAGE CALCULATOR</title>
+
+    <style>
+        body{
+            background-image: url("images/shustle.jpeg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        body h2 {
+            text-align: center;
+            font-family: arial;
+            color: navy;
+            padding-top: 110px;
+            text-shadow: 0px 2px 2px black;
+        }
+
+        #wrapper {
+            background-color: navy;  
+            color: white; 
+            width: 50%;
+            height: 450px; 
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            border-radius: 10px;
+        }
+
+
+        p {
+            text-align: center;
+            color: white;
+        }
+
+        .pinfo {
+            border-bottom: 2px solid white;
+            border-top: 2px solid white;
+            padding: 5px;
+           border-radius: 5px;
+        }
+
+        label {
+            margin-left: 155px;
+        }
+
+        input {
+            outline: none;
+            border: 1px solid white;
+            width: 50%;
+            box-shadow: 0px 2px 2px white;
+            margin-left: 155px ;
+            margin-top: 4px;
+        }
+
+        
+        input::placeholder {
+            color:black;
+            font-size: 13px;
+        }
+
+        select {
+            margin-left:155px;
+            outline: none;
+            background: white;
+            color: black;
+            padding: 5px;
+            margin-top: 10px;
+            width: 50%;
+        }
+
+        select option {
+            background-color: navy;
+            color: white;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-left: 155px;
+            outline: none;
+            background: transparent;
+            color: white; 
+            border: 1px solid white;
+            padding:10px ;
+            width: 50%;
+        }
+
+        #result {
+            padding-top: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>WAGE CALCULATOR</h2>
+
+    <main id="wrapper"> 
+        
+        <p class="pinfo">WAGER Pays the sum of One Thousand Naira per hour to employees who work for four hours  and adds a tip of two hundred naira to employees who work overtime (i.e above four hours.)</p>
+        <form action="#">
+            <p>Please enter the following information  to calculate your wage</p>
+            <label for="hours"> Employee Id:</label>
+            <br> <input type="text" id="employee" maxlength="10" placeholder="Input your Employee Id"> <br>
+            <br>
+
+            <label for="hours"> Hours Worked: </label>
+            <br> <input type="number" id="workHour" placeholder="Input  hours worked"> <br>
+            <br>
+
+            <label for="rate"> Gender</label> <br>
+            <select name="gender" id="gender">
+                <option value="male" >Male</option>
+                <option value="female">Female</option>
+            </select> <br>
+                <br>
+
+            <button type="button" onclick="wageCalc()">Calculate</button>
+            <div id="result"></div>
+        </form>  
+    </main>
+
+    <script type="text/javascript">
+        function wageCalc() {
+        const rate = 1000; //stores the value of the company rate per hour
+        const oRate = 200; //stores the value of the company overtime rate 
+
+        var hours = parseInt(document.getElementById("workHour").value); 
+        var employeeId = document.getElementById("employee").value;
+
+        if (hours >= 4) {
+            var   normalWage = ( (hours -  (hours - 4) ) * rate );
+            var   overtimeWage = ( oRate *  (hours - 4));
+            var   totalPay = normalWage + overtimeWage;
+
+            document.getElementById("result").innerHTML = "Employee with " + employeeId +  " Id Your Total  Wage including overtime tip is " + totalPay;
+        } else {
+            var normalWage = hours * rate;
+            document.getElementById("result").innerHTML = "Employee with " + employeeId + " Id Your Total Normal Wage is " + normalWage; 
+        }
+        }
+    </script>
+</body>
+</html>
