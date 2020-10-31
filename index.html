@@ -1,0 +1,222 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAGE CALCULATOR</title>
+
+    <style>
+ @media only screen and (min-width:375px) {
+
+        body{
+        background-image: url("images/shustle.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        }
+
+        #wrapper {
+        background-color: transparent;
+        border: 2px solid navy;  
+        text-shadow: 0px 1px 1px navy;
+        color: black; 
+        position: absolute;
+        border-radius: 10px;
+        width: 70%;
+        top: 15%;
+        left: 15%;
+        height: 520px;
+
+        }
+        body h2 {
+        padding-top: 55px;
+        text-align: center;
+        font-family: arial;
+        color: navy;
+        text-shadow: 0px 2px 2px black;
+        }   
+
+        p {
+        text-align: center;
+        padding: 5px;
+        }
+
+        .pinfo {
+        border-bottom: 2px solid navy;
+        border-top: 2px solid navy;
+        padding: 5px;
+        border-radius: 5px;
+        }
+
+        input {
+        margin-left: 65px ;
+        outline: none;
+        border: 2px solid navy;
+        width: 50%;
+        box-shadow: 0px 2px 2px white;
+        margin-top: 4px;
+        }
+
+        label {
+        margin-left: 65px ;
+
+        }
+
+        select {
+        margin-left: 65px;
+        outline: none;
+        background: white;
+        color: black;
+        padding: 5px;
+        margin-top: 10px;
+        width: 50%;
+        border: 2px solid navy;
+        }
+
+        button {
+        margin-left: 65px;
+        margin-top: 10px;
+        outline: none;
+        background: transparent;
+        color: navy; 
+        border: 2px solid navy;
+        padding:10px ;
+        width: 50%;
+        }
+
+        #result {
+        padding-top: 20px;
+        text-align: center;
+        }
+
+        }
+
+        @media only screen and (min-width:1000px) {
+    
+
+        body h2 {
+            padding-top: 110px;
+        
+        }
+
+        #wrapper {
+            background-color: transparent;  
+            color: black; 
+            text-shadow: 0px 1px 1px navy;
+            width: 50%;
+            position: absolute;
+            top: 25%;
+            left: 25%;
+            height: 430px;
+        }
+
+
+        p {
+            text-align: center;
+        }
+
+        .pinfo {
+            border-bottom: 2px solid navy;
+            border-top: 2px solid navy;
+            padding: 5px;
+           border-radius: 5px;
+        }
+
+        label {
+            margin-left: 155px;
+        }
+
+        input {
+            border: 2px solid navy;
+            margin-left: 155px ;
+           
+        }
+
+        
+        input::placeholder {
+            color:navy;
+            font-size: 13px;
+        }
+
+        select {
+            margin-left:155px;
+            background: white;
+            color: navy;
+            width: 50%;
+        }
+
+        select option {
+            background-color: navy;
+            color: white;
+        }
+
+        button {
+            margin-left: 155px;
+            outline: none;
+            background: transparent;
+            color: navy; 
+            border: 2px solid navy;
+            padding:10px ;
+            width: 50%;
+        }
+
+        #result {
+            padding-top: 13px;
+            text-align: center;
+        }
+
+    }
+       
+    </style>
+</head>
+<body>
+    <h2>WAGE CALCULATOR</h2>
+
+    <main id="wrapper"> 
+        
+        <p class="pinfo">WAGER Pays the sum of One Thousand Naira per hour to employees who work for four hours  and adds a tip of two hundred naira to employees who work overtime (i.e above four hours.)</p>
+        <form action="#">
+            <p>Please enter the following information  to calculate your wage</p>
+            <label for="hours"> Employee Id:</label>
+            <br> <input type="text" id="employee" maxlength="10" placeholder="Input your Employee Id"> <br>
+            <br>
+
+            <label for="hours"> Hours Worked: </label>
+            <br> <input type="number" id="workHour" placeholder="Input  hours worked"> <br>
+            <br>
+
+            <label for="rate"> Gender</label> <br>
+            <select name="gender" id="gender">
+                <option value="male" >Male</option>
+                <option value="female">Female</option>
+            </select> <br>
+                <br>
+
+            <button type="button" onclick="wageCalc()">Calculate</button>
+            <div id="result"></div>
+        </form>  
+    </main>
+
+    <script type="text/javascript">
+        function wageCalc() {
+        const rate = 1000; //stores the value of the company rate per hour
+        const oRate = 200; //stores the value of the company overtime rate 
+
+        var hours = parseInt(document.getElementById("workHour").value); 
+        var employeeId = document.getElementById("employee").value;
+
+        if (hours >= 4) {
+            var   normalWage = ( (hours -  (hours - 4) ) * rate );
+            var   overtimeWage = ( oRate *  (hours - 4));
+            var   totalPay = normalWage + overtimeWage;
+
+            document.getElementById("result").innerHTML = "Employee with " + employeeId +  " Id Your Total  Wage including overtime tip is " + totalPay;
+        } else {
+            var normalWage = hours * rate;
+            document.getElementById("result").innerHTML = "Employee with " + employeeId + " Id Your Total Normal Wage is " + normalWage; 
+        }
+        }
+    </script>
+</body>
+</html>
